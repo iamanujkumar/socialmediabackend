@@ -5,7 +5,8 @@ const {
   getPost,
   getTimelinePost,
   likePost,
-  updatePost
+  updatePost,
+  creatPost
 } = require('../Controllers/PostController.js');
 
 const router=express.Router()
