@@ -16,4 +16,4 @@ router.put('/:id',updatePost)
 router.delete('/:id',deletePost)
 router.put('/:id/like',likePost)
 router.get('/:id/timeline',getTimelinePost)
-export default router
+module.exports= router
