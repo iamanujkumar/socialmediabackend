@@ -1,5 +1,5 @@
-import express from 'express'
-import { createComment,getCommentsByPostId } from '../Controllers/CommentController.js'
+const express = require('express');
+const { createComment, getCommentsByPostId } = require('../Controllers/CommentController.js');
 
 const router = express.Router()
 

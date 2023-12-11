@@ -1,6 +1,6 @@
-import UserModel from "../Models/userModel.js";
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken'
+const UserModel = require("../Models/userModel.js");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 //get all user
 export const getAllUsers = async(req,res)=>{

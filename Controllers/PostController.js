@@ -1,7 +1,6 @@
-import PostModel from "../Models/PostModel.js";
-import mongoose from "mongoose";
-import UserModel from "../Models/userModel.js";
-
+const PostModel = require("../Models/PostModel.js");
+const mongoose = require("mongoose");
+const UserModel = require("../Models/userModel.js");
 
 // Creat new Post
 // export const creatPost = async(req,res)=>{
