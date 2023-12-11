@@ -1,5 +1,5 @@
 const bodyParser = require("body-parser");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const AuthRoute = require("./Routes/AuthRoute.js");
@@ -28,16 +28,16 @@ mongoose
     // useUnifiedTopology: true,
   })
   .then(() => {
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT || 3000, () => {
       console.log(`Listening at port ${process.env.PORT}`);
     });
   })
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
   });
-app.get('/',function(req,res){
+app.get("/", function (req, res) {
   res.status(200).json("Server running ");
-})
+});
 app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/post", PostRoute);
@@ -45,4 +45,3 @@ app.use("/upload", UploadRoute);
 app.use("/chat", ChatRoute);
 app.use("/message", MessageRoute);
 app.use("/comment", CommentRoute);
-
