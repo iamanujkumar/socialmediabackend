@@ -35,7 +35,9 @@ mongoose
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
   });
-
+app.use('/',function(req,res){
+  res.status(200).json("Server running ");
+})
 app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/post", PostRoute);
@@ -43,3 +45,4 @@ app.use("/upload", UploadRoute);
 app.use("/chat", ChatRoute);
 app.use("/message", MessageRoute);
 app.use("/comment", CommentRoute);
+
