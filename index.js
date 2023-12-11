@@ -24,8 +24,8 @@ dotenv.config();
 
 mongoose
   .connect(process.env.MONGO_DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
   })
   .then(() => {
     app.listen(process.env.PORT, () => {
@@ -35,7 +35,7 @@ mongoose
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
   });
-app.use('/',function(req,res){
+app.get('/',function(req,res){
   res.status(200).json("Server running ");
 })
 app.use("/auth", AuthRoute);
