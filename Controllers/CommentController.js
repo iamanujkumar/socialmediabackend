@@ -1,6 +1,6 @@
 const Comment = require("../Models/Comment.js");
 
-export const createComment = async (req, res) => {
+const createComment = async (req, res) => {
   const { postId, userId, text } = req.body;
 
   try {
@@ -13,7 +13,7 @@ export const createComment = async (req, res) => {
   }
 };
 //get comment
-export const getCommentsByPostId = async (req, res) => {
+const getCommentsByPostId = async (req, res) => {
   const postId = req.params.postId;
 
   try {
@@ -24,3 +24,4 @@ export const getCommentsByPostId = async (req, res) => {
     res.status(500).json(error);
   }
 };
+module.exports = { getCommentsByPostId, createComment };

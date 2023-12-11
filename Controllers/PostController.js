@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const UserModel = require("../Models/userModel.js");
 
 // Creat new Post
-// export const creatPost = async(req,res)=>{
+//  const creatPost = async(req,res)=>{
 //     const newPost= new PostModel(req.body)
 
 //     try {
@@ -15,7 +15,7 @@ const UserModel = require("../Models/userModel.js");
 //     }
 // }
 
-export const creatPost  = async (req, res) => {
+ const creatPost  = async (req, res) => {
     const { userId, desc, image } = req.body;
 
     try {
@@ -38,7 +38,7 @@ export const creatPost  = async (req, res) => {
 
 //Get a Post
 
-export const getPost= async(req,res)=>{
+ const getPost= async(req,res)=>{
     const id=req.params.id
     try {
         const post=await PostModel.findById(id)
@@ -50,7 +50,7 @@ export const getPost= async(req,res)=>{
 }
 
 // Update a Post
-export const updatePost = async(req,res)=>{
+ const updatePost = async(req,res)=>{
     const postId = req.params.id
     const {userId}=req.body
 
@@ -70,7 +70,7 @@ export const updatePost = async(req,res)=>{
 }
 
 // Delete a Post
-export const deletePost = async(req,res)=>{
+ const deletePost = async(req,res)=>{
     const id=req.params.id
     const {userId} = req.body
 
@@ -89,7 +89,7 @@ export const deletePost = async(req,res)=>{
 }
 
 // like/dislike a Post
-export const likePost = async(req,res)=>{
+ const likePost = async(req,res)=>{
     const id = req.params.id
     const {userId} = req.body
 
@@ -111,7 +111,7 @@ export const likePost = async(req,res)=>{
 
 // Get Timeline Post
 
-export const getTimelinePost = async(req,res)=>{
+ const getTimelinePost = async(req,res)=>{
     const userId = req.params.id
 
     try {
@@ -147,3 +147,4 @@ export const getTimelinePost = async(req,res)=>{
         res.status(500).json(error)
     }
 }
+module.exports={creatPost,getTimelinePost,likePost,deletePost,updatePost,getPost,creatPost}
