@@ -17,11 +17,9 @@ router.post("/", upload.single("file"), async function(req, res) {
       success: true,
       message: "Uploaded",
       data: result
-      
     });
   } catch (error) {
     console.error(error);
-
     res.status(500).json({
       success: false,
       message: "Error"
@@ -29,9 +27,7 @@ router.post("/", upload.single("file"), async function(req, res) {
   }
 });
 
-
 module.exports = router;
-
 
 const creatPost = async (req, res) => {
     const { userId, desc, image } = req.body;
@@ -57,7 +53,7 @@ module.exports.creatPost = creatPost;
 
 //Get a Post
 
-export const getPost= async(req,res)=>{
+const getPost= async(req,res)=>{
     const id=req.params.id
     try {
         const post=await PostModel.findById(id)
@@ -68,8 +64,10 @@ export const getPost= async(req,res)=>{
     }
 }
 
+module.exports.getPost = getPost;
+
 // Update a Post
-export const updatePost = async(req,res)=>{
+const updatePost = async(req,res)=>{
     const postId = req.params.id
     const {userId}=req.body
 
@@ -88,8 +86,10 @@ export const updatePost = async(req,res)=>{
 
 }
 
+module.exports.updatePost = updatePost;
+
 // Delete a Post
-export const deletePost = async(req,res)=>{
+const deletePost = async(req,res)=>{
     const id=req.params.id
     const {userId} = req.body
 
@@ -107,8 +107,10 @@ export const deletePost = async(req,res)=>{
     }
 }
 
+module.exports.deletePost = deletePost;
+
 // like/dislike a Post
-export const likePost = async(req,res)=>{
+const likePost = async(req,res)=>{
     const id = req.params.id
     const {userId} = req.body
 
@@ -128,9 +130,11 @@ export const likePost = async(req,res)=>{
     }
 }
 
+module.exports.likePost = likePost;
+
 // Get Timeline Post
 
-export const getTimelinePost = async(req,res)=>{
+const getTimelinePost = async(req,res)=>{
     const userId = req.params.id
 
     try {
@@ -166,3 +170,5 @@ export const getTimelinePost = async(req,res)=>{
         res.status(500).json(error)
     }
 }
+
+module.exports.getTimelinePost = getTimelinePost;
