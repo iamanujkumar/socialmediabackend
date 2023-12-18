@@ -1,48 +1,13 @@
-import PostModel from "../Models/PostModel.js";
-import mongoose from "mongoose";
-import UserModel from "../Models/userModel.js";
-
-
-// Creat new Post
-// export const creatPost = async(req,res)=>{
-//     const newPost= new PostModel(req.body)
-
-//     try {
-//         await newPost.save()
-//         res.status(200).json(newPost)
-        
-//     } catch (error) {
-//         res.status(500).json(error)
-//     }
-// }
-
-
-// export const creatPost  = async (req, res) => {
-//     const { userId, desc, image } = req.body;
-//     try {
-//         // Retrieve the username based on the userId
-//         const user = await UserModel.findById(userId);
-//         const username = user.username;
-//         const firstname = user.firstname;
-//         const lastname = user.lastname;
-//         const profilePicture = user.profilePicture;
-
-//         // Create a new post with the username
-//         const newPost = new PostModel({ userId, username, desc, image , firstname, lastname, profilePicture });
-//         const savedPost = await newPost.save();
-
-//         res.status(201).json(savedPost);
-//     } catch (error) {
-//         res.status(500).json(error);
-//     }
-// };
-
+const express = require('express');
+const mongoose = require('mongoose');
+const upload = require('../Routes/multer.js').upload;
+const cloudinary = require('../Routes/cloudnary.js');
+const PostModel = require('../Models/PostModel.js');
+const UserModel = require('../Models/userModel.js');
 
 let result;
-import express from 'express';
+
 const router = express.Router();
-import { upload } from '../Routes/multer.js';
-import cloudinary from '../Routes/cloudnary.js';
 
 router.post("/", upload.single("file"), async function(req, res) {
   try {
@@ -65,8 +30,7 @@ router.post("/", upload.single("file"), async function(req, res) {
 });
 
 
-
-export default router
+module.exports = router;
 
 
 // export const creatPost  = async (req, res) => {

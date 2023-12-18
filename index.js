@@ -1,65 +1,18 @@
-// const bodyParser = require("body-parser");
-// const mongoose = require("mongoose");
-// const dotenv = require("dotenv");
-// const cors = require("cors");
-// const AuthRoute = require("./Routes/AuthRoute.js");
-// const UserRoute = require("./Routes/UserRoute.js");
-// const PostRoute = require("./Routes/PostRoute.js");
-// const UploadRoute = require("./Routes/UploadRoute.js");
-// const ChatRoute = require("./Routes/ChatRoute.js");
-// const MessageRoute = require("./Routes/MessageRoute.js");
-// const CommentRoute = require("./Routes/CommentRoute.js");
 
-// const express = require("express");
 
-// const app = express();
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const AuthRoute = require("./Routes/AuthRoute.js");
+const UserRoute = require("./Routes/UserRoute.js");
+const PostRoute = require("./Routes/PostRoute.js");
+const UploadRoute = require("./Controllers/PostController.js");
+const ChatRoute = require("./Routes/ChatRoute.js");
+const MessageRoute = require("./Routes/MessageRoute.js");
+const CommentRoute = require("./Routes/CommentRoute.js");
 
-// app.use(express.static("public"));
-// app.use("/images", express.static("images"));
-
-// app.use(bodyParser.json({ limit: "30mb", extended: true }));
-// app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-// app.use(cors());
-// dotenv.config();
-
-// mongoose
-//   .connect(process.env.MONGO_DB, {
-//     // useNewUrlParser: true,
-//     // useUnifiedTopology: true,
-//   })
-//   .then(() => {
-//     app.listen(process.env.PORT || 3000, () => {
-//       console.log(`Listening at port ${process.env.PORT}`);
-//     });
-//   })
-//   .catch((error) => {
-//     console.error("Error connecting to MongoDB:", error);
-//   });
-// app.get("/", function (req, res) {
-//   res.status(200).json("Server running ");
-// });
-// app.use("/auth", AuthRoute);
-// app.use("/user", UserRoute);
-// app.use("/post", PostRoute);
-// app.use("/upload", UploadRoute);
-// app.use("/chat", ChatRoute);
-// app.use("/message", MessageRoute);
-// app.use("/comment", CommentRoute);
-
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv'
-import cors from 'cors'
-import AuthRoute from './Routes/AuthRoute.js'
-import UserRoute from './Routes/UserRoute.js'
-import PostRoute from './Routes/PostRoute.js'
-// import UploadRoute from './Routes/UploadRoute.js'
-import UploadRoute from './Controllers/PostController.js'
-
-import ChatRoute from './Routes/ChatRoute.js'
-import MessageRoute from './Routes/MessageRoute.js'
-import CommentRoute from './Routes/CommentRoute.js'
+const express = require("express");
 
 const app = express();
 
