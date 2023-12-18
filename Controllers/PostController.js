@@ -1,9 +1,10 @@
-const PostModel = require("../Models/PostModel.js");
-const mongoose = require("mongoose");
-const UserModel = require("../Models/userModel.js");
+import PostModel from "../Models/PostModel.js";
+import mongoose from "mongoose";
+import UserModel from "../Models/userModel.js";
+
 
 // Creat new Post
-//  const creatPost = async(req,res)=>{
+// export const creatPost = async(req,res)=>{
 //     const newPost= new PostModel(req.body)
 
 //     try {
@@ -15,7 +16,81 @@ const UserModel = require("../Models/userModel.js");
 //     }
 // }
 
- const creatPost  = async (req, res) => {
+
+// export const creatPost  = async (req, res) => {
+//     const { userId, desc, image } = req.body;
+//     try {
+//         // Retrieve the username based on the userId
+//         const user = await UserModel.findById(userId);
+//         const username = user.username;
+//         const firstname = user.firstname;
+//         const lastname = user.lastname;
+//         const profilePicture = user.profilePicture;
+
+//         // Create a new post with the username
+//         const newPost = new PostModel({ userId, username, desc, image , firstname, lastname, profilePicture });
+//         const savedPost = await newPost.save();
+
+//         res.status(201).json(savedPost);
+//     } catch (error) {
+//         res.status(500).json(error);
+//     }
+// };
+
+
+let result;
+import express from 'express';
+const router = express.Router();
+import { upload } from '../Routes/multer.js';
+import cloudinary from '../Routes/cloudnary.js';
+
+router.post("/", upload.single("file"), async function(req, res) {
+  try {
+    result = await cloudinary.uploader.upload(req.file.path);
+    console.log(result);
+    res.status(200).json({
+      success: true,
+      message: "Uploaded",
+      data: result
+      
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Error"
+    });
+  }
+});
+
+
+
+export default router
+
+
+// export const creatPost  = async (req, res) => {
+//     const { userId, desc, image } = req.body;
+
+//     try {
+//         // Retrieve the username based on the userId
+//         const user = await UserModel.findById(userId);
+//         const username = user.username;
+//         const firstname = user.firstname;
+//         const lastname = user.lastname;
+//         const profilePicture = user.profilePicture;
+//         const imgUrl = result.secure_url;
+//         // Create a new post with the username
+//         const newPost = new PostModel({ userId, username, desc, image , firstname, lastname, profilePicture });
+//         const savedPost = await newPost.save();
+
+//         res.status(201).json(savedPost);
+//     } catch (error) {
+//         res.status(500).json(error);
+//     }
+// };
+
+export const creatPost  = async (req, res) => {
     const { userId, desc, image } = req.body;
 
     try {
@@ -26,8 +101,11 @@ const UserModel = require("../Models/userModel.js");
         const lastname = user.lastname;
         const profilePicture = user.profilePicture;
 
-        // Create a new post with the username
-        const newPost = new PostModel({ userId, username, desc, image , firstname, lastname, profilePicture });
+        // Extract secure_url from the result object
+        const imgUrl = result.secure_url;
+
+        // Create a new post with the username and imgUrl
+        const newPost = new PostModel({ userId, username, desc, image, firstname, lastname, profilePicture, imgUrl });
         const savedPost = await newPost.save();
 
         res.status(201).json(savedPost);
@@ -38,7 +116,7 @@ const UserModel = require("../Models/userModel.js");
 
 //Get a Post
 
- const getPost= async(req,res)=>{
+export const getPost= async(req,res)=>{
     const id=req.params.id
     try {
         const post=await PostModel.findById(id)
@@ -50,7 +128,7 @@ const UserModel = require("../Models/userModel.js");
 }
 
 // Update a Post
- const updatePost = async(req,res)=>{
+export const updatePost = async(req,res)=>{
     const postId = req.params.id
     const {userId}=req.body
 
@@ -70,7 +148,7 @@ const UserModel = require("../Models/userModel.js");
 }
 
 // Delete a Post
- const deletePost = async(req,res)=>{
+export const deletePost = async(req,res)=>{
     const id=req.params.id
     const {userId} = req.body
 
@@ -89,7 +167,7 @@ const UserModel = require("../Models/userModel.js");
 }
 
 // like/dislike a Post
- const likePost = async(req,res)=>{
+export const likePost = async(req,res)=>{
     const id = req.params.id
     const {userId} = req.body
 
@@ -111,7 +189,7 @@ const UserModel = require("../Models/userModel.js");
 
 // Get Timeline Post
 
- const getTimelinePost = async(req,res)=>{
+export const getTimelinePost = async(req,res)=>{
     const userId = req.params.id
 
     try {
@@ -147,4 +225,3 @@ const UserModel = require("../Models/userModel.js");
         res.status(500).json(error)
     }
 }
-module.exports={creatPost,getTimelinePost,likePost,deletePost,updatePost,getPost,creatPost}
