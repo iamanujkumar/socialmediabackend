@@ -14,6 +14,10 @@ const postSchema = mongoose.Schema({
         default: new Date(),
       },
     image: String,
+    imgUrl:{
+        type:String,
+        require:true
+    },
     profilePicture:String,
 },
 {
