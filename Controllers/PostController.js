@@ -33,30 +33,27 @@ router.post("/", upload.single("file"), async function(req, res) {
 module.exports = router;
 
 
-
-export const creatPost  = async (req, res) => {
+const creatPost = async (req, res) => {
     const { userId, desc, image } = req.body;
-
+  
     try {
-        // Retrieve the username based on the userId
-        const user = await UserModel.findById(userId);
-        const username = user.username;
-        const firstname = user.firstname;
-        const lastname = user.lastname;
-        const profilePicture = user.profilePicture;
-
-        // Extract secure_url from the result object
-        const imgUrl = result.secure_url;
-
-        // Create a new post with the username and imgUrl
-        const newPost = new PostModel({ userId, username, desc, image, firstname, lastname, profilePicture, imgUrl });
-        const savedPost = await newPost.save();
-
-        res.status(201).json(savedPost);
+      const user = await UserModel.findById(userId);
+      const username = user.username;
+      const firstname = user.firstname;
+      const lastname = user.lastname;
+      const profilePicture = user.profilePicture;
+      const imgUrl = result.secure_url;
+  
+      const newPost = new PostModel({ userId, username, desc, image, firstname, lastname, profilePicture, imgUrl });
+      const savedPost = await newPost.save();
+  
+      res.status(201).json(savedPost);
     } catch (error) {
-        res.status(500).json(error);
+      res.status(500).json(error);
     }
-};
+  };
+  
+module.exports.creatPost = creatPost;
 
 //Get a Post
 
